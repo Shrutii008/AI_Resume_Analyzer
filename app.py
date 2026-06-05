@@ -4,7 +4,7 @@ import base64
 
 st.set_page_config(page_title="AI Resume Analyzer", layout="wide")
 
-st.title("📄 AI Resume Analyzer")
+st.title("AI Resume Analyzer")
 
 uploaded_file = st.file_uploader("Upload your Resume (PDF)", type=["pdf"])
 
@@ -61,12 +61,12 @@ if uploaded_file is not None:
 
     # LEFT SIDE
     with col1:
-        st.subheader("📄 Resume Text")
+        st.subheader("Resume Text")
 
         with st.container():
             st.write(text)
 
-        st.subheader("📌 Resume Sections")
+        st.subheader("Resume Sections")
 
         name = text.split("\n")[0] if text else "Not found"
         email = "Found" if "@" in text else "Not found"
@@ -79,21 +79,21 @@ if uploaded_file is not None:
     # RIGHT SIDE (DASHBOARD)
     with col2:
 
-        st.markdown("### 🧠 Skills Detected")
+        st.markdown("Skills Detected")
         st.success(", ".join(found_skills) if found_skills else "No skills detected")
 
-        st.markdown("### 📊 ATS Score")
+        st.markdown("ATS Score")
         st.progress(int(score))
         st.metric("Score", int(score))
 
-        st.markdown("### ⚠️ Missing Skills")
+        st.markdown("Missing Skills")
         if missing:
             for m in missing:
                 st.error(m)
         else:
             st.success("No missing skills")
 
-        st.markdown("### ❓ Interview Questions")
+        st.markdown(" Interview Questions")
         if questions:
             for q in questions:
                 st.info(q)
@@ -105,7 +105,7 @@ if uploaded_file is not None:
 
     # ---------------- DOWNLOAD ----------------
     st.markdown("---")
-    st.subheader("📥 Download Report")
+    st.subheader("Download Report")
 
     job_role = st.selectbox(
         "Select Job Role",
@@ -127,6 +127,6 @@ Summary: {summary}
 
     b64 = base64.b64encode(report_text.encode()).decode()
 
-    href = f'<a href="data:file/txt;base64,{b64}" download="resume_report.txt">📥 Download Report</a>'
+    href = f'<a href="data:file/txt;base64,{b64}" download="resume_report.txt"> Download Report</a>'
 
     st.markdown(href, unsafe_allow_html=True)
